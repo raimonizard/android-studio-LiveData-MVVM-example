@@ -1,5 +1,14 @@
-# Project
-An Android Studio Ladybug project done with Jetpack Compose with kotlin.
+# Android App with LiveData and MVVM
+## Android Studio Version
+Android Studio Ladybug | 2024.2.1 Patch 2
+
+## Language
+Kotlin with JetPack Compose
+
+## Purpose
+This app is a demo of the use of **LiveData** and **MVVM** pattern
+
+---
 
 # Gradle dependencies
 It is necessary to add the following dependencies in the file [`app/build.gradle.kts`](app/build.gradle.kts):
@@ -14,7 +23,7 @@ dependencies {
 ```
 
 # Screenshot
-![image](app/screenshots/Screenshot_20241120_164629.png)
+<img src="app/screenshots/Screenshot_20241120_164629.png" alt="App activity" width="300"/>
 
 ---
 # References
