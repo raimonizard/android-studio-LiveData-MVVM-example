@@ -13,24 +13,35 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
-import com.example.livedataexample.viewmodel.ElMeuViewModel
-import com.example.livedataexample.viewmodel.ValorViewModel
+import com.example.livedataexample.model.Numero
+import com.example.livedataexample.viewmodel.NumeroViewModel
 
 @Composable
-fun Body(myViewModel: ElMeuViewModel) {
-    val clicksValue: Int by myViewModel.clicksValue.observeAsState(initial = 0)
+fun Body(myViewModel: NumeroViewModel = NumeroViewModel()) {
+    //val clicksValue: Int by myViewModel.clicksValue.observeAsState(initial = 0)
+    //val clicksValue by myViewModel.valorNumeric.observeAsState() // .observeAsState(initial = { Numero(0, false) })
+    val valor = myViewModel.valorNumeric.value
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = clicksValue.toString(), fontSize = 24.sp)
-        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = { myViewModel.onDecrementClicked() }) {
+        Text(
+            text = valor.numero.toString(),
+            fontSize = 24.sp
+        )
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = { myViewModel.onDecrementClicked() }
+            ) {
                 Text(text = "Decrementa")
             }
-            Button(onClick = { myViewModel.onIncrementClicked() }) {
+            Button(
+                onClick = { myViewModel.onIncrementClicked() }
+            ) {
                 Text(text = "Incrementa")
             }
         }
