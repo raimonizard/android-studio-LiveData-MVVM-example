@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import com.example.livedataexample.model.Numero
 import com.example.livedataexample.viewmodel.NumeroViewModel
@@ -31,6 +32,13 @@ fun Body(myViewModel: NumeroViewModel = NumeroViewModel()) {
             text = valor.numero.toString(),
             fontSize = 24.sp
         )
+
+        Text(
+            text = valor.positiu.toString(),
+            fontSize = 24.sp,
+            color = if (valor.positiu) Color.Green else Color.Red
+        )
+
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()) {

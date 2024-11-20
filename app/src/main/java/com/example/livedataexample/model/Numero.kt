@@ -6,8 +6,8 @@ package com.example.livedataexample.model
  * @since 20/11/2024
  */
 data class Numero(
-    var numero: Int = 0,
-    var positiu: Boolean = false
+    var numero: Int,
+    var positiu: Boolean
 )
 /*
 {

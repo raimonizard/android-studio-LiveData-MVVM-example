@@ -19,7 +19,7 @@ class NumeroViewModel: ViewModel() {
     //val valorNumeric = _valorNumeric
     ////val valorNumeric: LiveData<Numero> get() = _valorNumeric
 
-    val valorNumeric = mutableStateOf(Numero(0, false))
+    var valorNumeric = mutableStateOf(Numero(0, false))
 
     fun getNumero(): Int{
         if (valorNumeric.value == null)
@@ -36,16 +36,20 @@ class NumeroViewModel: ViewModel() {
     }
 
     fun onIncrementClicked() {
-        valorNumeric.value?.numero  = valorNumeric.value?.numero!!.plus(1)
-
-        if (valorNumeric.value?.numero!! >= 0)
-            valorNumeric.value?.positiu = true
+        valorNumeric.value = valorNumeric
+            //copy(): The copy() function creates a new instance of the Numero data class with the specified modifications. This is important because Compose relies on immutability to detect changes.
+            .value.copy(
+                numero = valorNumeric.value.numero + 1,
+                positiu = valorNumeric.value.numero + 1 >= 0
+            )
     }
 
     fun onDecrementClicked() {
-        valorNumeric.value?.numero  = valorNumeric.value?.numero!!.minus(1)
-
-        if (valorNumeric.value?.numero!! < 0)
-            valorNumeric.value?.positiu = false
+        valorNumeric.value = valorNumeric
+            //copy(): The copy() function creates a new instance of the Numero data class with the specified modifications. This is important because Compose relies on immutability to detect changes.
+            .value.copy(
+                numero = valorNumeric.value.numero - 1,
+                positiu = valorNumeric.value.numero - 1 >= 0
+            )
     }
 }
