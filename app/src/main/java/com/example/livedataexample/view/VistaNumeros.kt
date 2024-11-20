@@ -8,47 +8,50 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
-import com.example.livedataexample.model.Numero
 import com.example.livedataexample.viewmodel.NumeroViewModel
 
+/**
+ * Definim la view
+ * @param myViewModel: ViewModel
+ * @author RIS
+ * @since 2024-11-20
+ */
 @Composable
 fun Body(myViewModel: NumeroViewModel = NumeroViewModel()) {
-    //val clicksValue: Int by myViewModel.clicksValue.observeAsState(initial = 0)
-    //val clicksValue by myViewModel.valorNumeric.observeAsState() // .observeAsState(initial = { Numero(0, false) })
+    // Capturem el valor del Live Data per tal de mostrar-lo a la vista
     val valor = myViewModel.valorNumeric.value
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier.fillMaxSize()
+        verticalArrangement = Arrangement.SpaceEvenly, // Distribueix els elements de la columna ocupant tot el vertical disponible
+        modifier = Modifier.fillMaxSize() // Ocupa tot l'espai disponible de l'element superior
     ) {
         Text(
-            text = valor.numero.toString(),
+            text = valor.numero.toString(), // Mostra el valor de l'artibut numero del LiveData del data class
             fontSize = 24.sp
         )
 
         Text(
-            text = valor.positiu.toString(),
+            text = valor.positiu.toString(),  // Mostra el valor de l'artibut numero del LiveData del data class
             fontSize = 24.sp,
-            color = if (valor.positiu) Color.Green else Color.Red
+            color = if (valor.positiu) Color.Green else Color.Red // Canvia el color del text en funció del valor del número
         )
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()) {
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Button(
-                onClick = { myViewModel.onDecrementClicked() }
+                onClick = { myViewModel.onDecrementClicked() } // Crida a la funció onDecrementClicked del ViewModel
             ) {
                 Text(text = "Decrementa")
             }
             Button(
-                onClick = { myViewModel.onIncrementClicked() }
+                onClick = { myViewModel.onIncrementClicked() } // Crida a la funció onIncrementClicked del ViewModel
             ) {
                 Text(text = "Incrementa")
             }
